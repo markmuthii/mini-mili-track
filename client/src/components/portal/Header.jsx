@@ -18,6 +18,14 @@ export const Header = () => {
             Dashboard
           </NavLink>
           <NavLink
+            to="/users"
+            className={({ isActive }) =>
+              `transition ${isActive ? "text-slate-900" : "hover:text-slate-900"}`
+            }
+          >
+            Users
+          </NavLink>
+          <NavLink
             to="/analytics"
             className={({ isActive }) =>
               `transition ${isActive ? "text-slate-900" : "hover:text-slate-900"}`

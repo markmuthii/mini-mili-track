@@ -17,10 +17,10 @@ export const ProfilePage = () => {
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[1.4fr_0.8fr]">
-          <div className="rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-200">
+          <div className="rounded-4xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-4">
-                <div className="flex h-20 w-20 items-center justify-center rounded-[2rem] bg-orange-500 text-3xl font-semibold text-white shadow-sm">
+                <div className="flex h-20 w-20 items-center justify-center rounded-4xl bg-orange-500 text-3xl font-semibold text-white shadow-sm">
                   AJ
                 </div>
                 <div>
@@ -65,7 +65,7 @@ export const ProfilePage = () => {
                     Your average performance across games
                   </p>
                 </div>
-                <div className="flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-sky-100 text-3xl text-sky-600">
+                <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-sky-100 text-3xl text-sky-600">
                   🏆
                 </div>
               </div>
@@ -73,7 +73,7 @@ export const ProfilePage = () => {
           </div>
 
           <div className="grid gap-6">
-            <div className="rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-200">
+            <div className="rounded-4xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
                 Account details
               </p>
@@ -93,7 +93,7 @@ export const ProfilePage = () => {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="rounded-4xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">

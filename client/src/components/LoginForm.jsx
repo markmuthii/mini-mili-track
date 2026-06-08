@@ -1,6 +1,44 @@
-import { Link } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
 
 export function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await fetch(
+        "https://charity-minds-backend.onrender.com/api/v1/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+
+      const data = await response.json();
+      console.log("Login successful:", data);
+      // Handle successful login (e.g., store token, redirect)
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto bg-white rounded-[32px] shadow-[0_24px_80px_rgba(31,41,55,0.08)] border border-slate-200 overflow-hidden">
       <div className="p-8 sm:p-10">
@@ -9,7 +47,7 @@ export function LoginForm() {
           Login to get back to monitor your games progress.
         </p>
 
-        <form className="mt-8 space-y-5">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-5">
           <div>
             <label
               htmlFor="email"
@@ -23,6 +61,8 @@ export function LoginForm() {
               type="email"
               placeholder="you@example.com"
               className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -39,6 +79,8 @@ export function LoginForm() {
               type="password"
               placeholder="••••••••"
               className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

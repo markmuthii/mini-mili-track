@@ -9,7 +9,8 @@ import { RegisterPage } from "./pages/Register.jsx";
 import { DashboardPage } from "./pages/portal/Dashboard.jsx";
 import { AnalyticsPage } from "./pages/portal/Analytics.jsx";
 import { ProfilePage } from "./pages/portal/Profile.jsx";
-import { State } from "./components/State.jsx";
+import { State } from "./pages/State.jsx";
+import { UsersPage } from "./pages/portal/Users.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/users" element={<UsersPage />} />
         <Route path="/state" element={<State />} />
       </Routes>
     </BrowserRouter>
