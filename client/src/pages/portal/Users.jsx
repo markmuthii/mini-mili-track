@@ -4,6 +4,7 @@ import { Header } from "../../components/portal/Header";
 
 export function UsersPage() {
   const [users, setUsers] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(0);
 
   const fetchUsers = async () => {
     try {
@@ -14,6 +15,7 @@ export function UsersPage() {
       console.log(users);
 
       setUsers(users);
+      setTotalUsers(users.length);
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -44,7 +46,9 @@ export function UsersPage() {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <p className="text-3xl font-semibold text-slate-900">23</p>
+            <p className="text-3xl font-semibold text-slate-900">
+              {totalUsers}
+            </p>
             <p className="mt-2 text-sm text-slate-500">Total Users</p>
           </div>
           <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
@@ -63,9 +67,14 @@ export function UsersPage() {
                 Active accounts
               </h2>
             </div>
-            <div className="rounded-3xl bg-slate-100 px-4 py-2 text-sm text-slate-600">
-              Updated just now
-            </div>
+            <select className="rounded-3xl bg-slate-100 px-4 py-2 text-sm text-slate-600">
+              <option value="all">All Users</option>
+              <option value="february">February</option>
+              <option value="march">March</option>
+              <option value="april">April</option>
+              <option value="may">May</option>
+              <option value="june">June</option>
+            </select>
           </div>
 
           <div className="overflow-x-auto">
