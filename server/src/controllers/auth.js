@@ -1,10 +1,46 @@
-import { hashSync } from "bcryptjs";
+import { compareSync, hashSync } from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { User } from "../db/Models/User.js";
 
-export const loginController = (req, res) => {
-  return res.send({
-    message: "POST Login route",
-  });
+export const loginController = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if users exists with that email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      throw Error("Invalid credentials");
+    }
+
+    if (!compareSync(password, user.password)) {
+      throw Error("Invalid credentials");
+    }
+
+    // remove the password from the user object
+    user.password = undefined;
+
+    // Generate the auth JWT token
+    const token = jwt.sign({ user }, process.env.JWT_SIGNATURE);
+
+    // Set the token within the cookies
+    res.cookie("auth_token", token, {
+      maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    return res.send({
+      message: "Login successful",
+      token,
+    });
+  } catch (error) {
+    console.log("Error logging in: ", error);
+
+    return res.status(400).send({
+      message: error.message || "Something went wrong. Please try again",
+    });
+  }
 };
 
 export const registerController = async (req, res) => {
