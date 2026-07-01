@@ -5,11 +5,3 @@ export const helloController = (req, res) => {
     text: "Hello John Wick",
   });
 };
-
-export const usersController = async (req, res) => {
-  const users = await User.find();
-
-  return res.send({
-    data: users,
-  });
-};

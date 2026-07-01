@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { authRouter } from "./auth.js";
-import { helloController, usersController } from "../../controllers/index.js";
+import { helloController } from "../../controllers/index.js";
+import { usersRouter } from "./users.js";
 
 const v1Router = Router();
 
@@ -8,6 +9,6 @@ v1Router.use("/auth", authRouter);
 
 v1Router.get("/hello", helloController);
 
-v1Router.get("/users", usersController);
+v1Router.use("/users", usersRouter);
 
 export { v1Router };
